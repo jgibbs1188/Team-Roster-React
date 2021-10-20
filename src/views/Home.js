@@ -5,7 +5,7 @@ import Team from '../components/Team';
 
 export default function Home({ players, setPlayers }) {
   return (
-    <>
+    <div>
       <Table striped bordered>
         <thead>
           <tr>
@@ -18,12 +18,13 @@ export default function Home({ players, setPlayers }) {
         {players.map((player) => (
           <Team
             key={player.id}
+            // I WILL NEED TO UPDATE THE LINE ABOVE TO FIREBASE KEY ONCE CREATE WORKS
             players={player}
             setPlayers={setPlayers}
           />
         ))}
       </Table>
-    </>
+    </div>
   );
 }
 
