@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import Navigation from '../components/Navigation';
 import SignIn from '../components/SignIn';
-import getTeam from '../api/data/teamData';
+import { getTeam } from '../api/data/teamData';
 import Routes from '../routes/routeIndex';
 
 function Initialize() {
@@ -33,7 +33,7 @@ function Initialize() {
       {user ? (
         <>
           <Navigation />
-          <Routes players={players} setPlayers={setPlayers} />
+          <Routes user={user} players={players} setPlayers={setPlayers} />
         </>
       ) : (
         <SignIn />

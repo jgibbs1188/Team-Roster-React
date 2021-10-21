@@ -17,8 +17,7 @@ export default function Home({ players, setPlayers }) {
         </thead>
         {players.map((player) => (
           <Team
-            key={player.id}
-            // I WILL NEED TO UPDATE THE LINE ABOVE TO FIREBASE KEY ONCE CREATE WORKS
+            key={player.firebaseKey}
             players={player}
             setPlayers={setPlayers}
           />

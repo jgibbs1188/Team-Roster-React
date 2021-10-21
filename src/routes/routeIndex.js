@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../views/Home';
 import New from '../views/New';
 
-export default function Routes({ players, setPlayers }) {
+export default function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
@@ -19,7 +19,7 @@ export default function Routes({ players, setPlayers }) {
           exact
           path="/new"
           component={() => (
-            <New />
+            <New user={user} setPlayers={setPlayers} />
           )}
         />
       </Switch>
@@ -30,4 +30,9 @@ export default function Routes({ players, setPlayers }) {
 Routes.propTypes = {
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   setPlayers: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    fullName: PropTypes.string,
+    photo: PropTypes.string,
+    uid: PropTypes.string,
+  }).isRequired,
 };
