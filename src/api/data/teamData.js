@@ -23,4 +23,11 @@ const createPlayer = (obj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getTeam, createPlayer };
+const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
+  axios
+    .delete(`${dbUrl}/team/${firebaseKey}.json`)
+    .then(() => getTeam().then(resolve))
+    .catch(reject);
+});
+
+export { getTeam, createPlayer, deletePlayer };
