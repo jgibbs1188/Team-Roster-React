@@ -43,6 +43,14 @@ export default function NewPlayerForm({
     }));
   };
 
+  const handleIdChange = (e) => {
+    const { id, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [id]: Number(value),
+    }));
+  };
+
   const resetForm = () => {
     setFormInput({});
     setEditItem({});
@@ -62,7 +70,7 @@ export default function NewPlayerForm({
       <form onSubmit={handleSubmit}>
         <label htmlFor="id">
           Number
-          <input type="number" id="id" name="id" onChange={handleChange} required />
+          <input type="number" id="id" name="id" value={formInput.id} onChange={handleIdChange} required />
         </label>
         <label htmlFor="name">
           Name
