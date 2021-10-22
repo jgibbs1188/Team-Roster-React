@@ -8,6 +8,7 @@ const initialState = {
   name: '',
   position: '',
   imageUrl: '',
+  firebaseKey: '',
   uid: '',
 };
 
@@ -70,19 +71,19 @@ export default function NewPlayerForm({
       <form onSubmit={handleSubmit}>
         <label htmlFor="id">
           Number
-          <input type="number" id="id" name="id" value={formInput.id} onChange={handleIdChange} required />
+          <input type="number" id="id" name="id" value={formInput.id || ''} onChange={handleIdChange} required />
         </label>
         <label htmlFor="name">
           Name
-          <input type="text" id="name" name="name" value={formInput.name} onChange={handleChange} required />
+          <input type="text" id="name" name="name" value={formInput.name || ''} onChange={handleChange} required />
         </label>
         <label htmlFor="position">
           Position
-          <input type="text" id="position" name="position" value={formInput.position} onChange={handleChange} required />
+          <input type="text" id="position" name="position" value={formInput.position || ''} onChange={handleChange} required />
         </label>
         <label htmlFor="imageUrl">
           Image
-          <input type="text" id="imageUrl" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
+          <input type="text" id="imageUrl" name="imageUrl" value={formInput.imageUrl || ''} onChange={handleChange} required />
         </label>
         <button className="btn btn-success" type="submit">
           {obj.firebaseKey ? 'UPDATE' : 'SUBMIT'}

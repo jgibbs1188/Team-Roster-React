@@ -17,8 +17,12 @@ export default function Team({ players, setPlayers }) {
           <td>{players.name}</td>
           <td>{players.position}</td>
           <td>{players.imageUrl}</td>
-          <button type="button" className="btn btn-info">EDIT</button>
-          <button onClick={() => handleClick('delete')} type="button" className="btn btn-danger">DELETE</button>
+          <>
+            <>
+              <button type="button" className="btn btn-info">EDIT</button>
+              <button onClick={() => handleClick('delete')} type="button" className="btn btn-danger">DELETE</button>
+            </>
+          </>
         </tr>
       </tbody>
     </>
