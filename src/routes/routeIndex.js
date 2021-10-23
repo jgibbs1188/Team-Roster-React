@@ -4,7 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../views/Home';
 import New from '../views/New';
 
-export default function Routes({ user, players, setPlayers }) {
+export default function Routes({
+  user, players, setPlayers, editItem, setEditItem,
+}) {
   return (
     <div>
       <Switch>
@@ -12,14 +14,14 @@ export default function Routes({ user, players, setPlayers }) {
           exact
           path="/"
           component={() => (
-            <Home players={players} setPlayers={setPlayers} />
+            <Home players={players} setPlayers={setPlayers} setEditItem={setEditItem} />
           )}
         />
         <Route
           exact
           path="/new"
           component={() => (
-            <New user={user} setPlayers={setPlayers} />
+            <New obj={editItem} setEditItem={setEditItem} user={user} setPlayers={setPlayers} />
           )}
         />
       </Switch>
@@ -35,4 +37,6 @@ Routes.propTypes = {
     photo: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,
+  editItem: PropTypes.shape.isRequired,
+  setEditItem: PropTypes.func.isRequired,
 };

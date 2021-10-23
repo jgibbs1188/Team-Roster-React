@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { deletePlayer } from '../api/data/teamData';
+// import { useHistory } from 'react-router-dom';
+import { deletePlayer, updatePlayers } from '../api/data/teamData';
+import NewPlayerForm from './NewPlayerForm';
 
 export default function Team({ players, setPlayers }) {
-  const handleClick = (method) => {
-    if (method === 'delete') {
-      deletePlayer(players.firebaseKey).then(setPlayers);
-    }
+  // const history = useHistory();
+
+  const handleDelete = () => {
+    deletePlayer(players.firebaseKey).then(setPlayers);
+  };
+
+  const handleUpdate = () => {
+    updatePlayers(players.firebaseKey).then((playersResponse) => {
+      <NewPlayerForm players={playersResponse} setPlayers={setPlayers} />;
+    });
   };
 
   return (
@@ -17,8 +25,8 @@ export default function Team({ players, setPlayers }) {
           <td>{players.name}</td>
           <td>{players.position}</td>
           <td>{players.imageUrl}</td>
-          <button type="button" className="btn btn-info">EDIT</button>
-          <button onClick={() => handleClick('delete')} type="button" className="btn btn-danger">DELETE</button>
+          <button onClick={(e) => handleUpdate(e)} type="button" className="btn btn-info">EDIT</button>
+          <button onClick={(e) => handleDelete(e)} type="button" className="btn btn-danger">DELETE</button>
         </tr>
       </tbody>
     </>
@@ -34,5 +42,5 @@ Team.propTypes = {
     firebaseKey: PropTypes.string,
   }).isRequired,
   setPlayers: PropTypes.func.isRequired,
-  //   setEditItem: PropTypes.func.isRequired,
+  // setEditItem: PropTypes.func.isRequired,
 };

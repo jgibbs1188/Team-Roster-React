@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { createPlayer } from '../api/data/teamData';
+import { createPlayer, updatePlayers } from '../api/data/teamData';
 
 const initialState = {
   id: '',
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default function NewPlayerForm({
-  user, obj, setPlayers, setEditItem,
+  user, obj = {}, setPlayers, setEditItem,
 }) {
   const [formInput, setFormInput] = useState(initialState);
   const history = useHistory();
@@ -58,11 +58,18 @@ export default function NewPlayerForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPlayer({ ...formInput }).then((player) => {
-      setPlayers(player);
-      resetForm();
-      history.push('/');
-    });
+    if (obj.firebaseKey) {
+      updatePlayers({ ...formInput }).then((player) => {
+        setPlayers(player);
+        resetForm();
+      });
+    } else {
+      createPlayer({ ...formInput }).then((player) => {
+        setPlayers(player);
+        resetForm();
+        history.push('/');
+      });
+    }
   };
 
   return (
@@ -84,8 +91,8 @@ export default function NewPlayerForm({
           Image
           <input type="text" id="imageUrl" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
         </label>
-        <button className="btn btn-success" type="submit">
-          {obj.firebaseKey ? 'UPDATE' : 'SUBMIT'}
+        <button type="submit" color="success" onClick={(e) => handleSubmit(e)}>
+          SUBMIT
         </button>
       </form>
     </>

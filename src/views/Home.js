@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'reactstrap';
 import Team from '../components/Team';
 
-export default function Home({ players, setPlayers }) {
+export default function Home({ players, setPlayers, setEditItem }) {
   return (
     <div>
       <Table striped bordered>
@@ -20,6 +20,7 @@ export default function Home({ players, setPlayers }) {
             key={player.firebaseKey}
             players={player}
             setPlayers={setPlayers}
+            setEditItem={setEditItem}
           />
         ))}
       </Table>
@@ -30,4 +31,5 @@ export default function Home({ players, setPlayers }) {
 Home.propTypes = {
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   setPlayers: PropTypes.func.isRequired,
+  setEditItem: PropTypes.func.isRequired,
 };
