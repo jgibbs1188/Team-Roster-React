@@ -30,4 +30,14 @@ const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getTeam, createPlayer, deletePlayer };
+const updatePlayers = (playerObj) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/players/${playerObj.firebaseKey}.json`, playerObj)
+    .then(() => {
+      getTeam().then(resolve);
+    })
+    .catch(reject);
+});
+
+export {
+  getTeam, createPlayer, deletePlayer, updatePlayers,
+};
